@@ -1,0 +1,44 @@
+spring:
+  application:
+    # 应用名称
+    name: auth-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos-ip@
+        enabled: true
+      config:
+        server-addr: @nacos-ip@
+        file-extension: ${NACOS_FILE_EXTENSION:yaml}
+        enabled: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: true
+      connection-test-query: SELECT 1
+      ## 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      idle-timeout: 180000
+      ## 空闲连接存活最大时间，默认600000（10分钟）
+      max-lifetime: 30000
+      ## 连接池最大连接数，默认是10
+      maximum-pool-size: 50
+      ## 最小空闲连接数量
+      minimum-idle: 5
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&allowMultiQueries=true
+    username: root
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8082
+  tomcat:
+    accesslog:
+      enabled: false
+      directory: logs
+      pattern: common
+      prefix: access_log
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 102400

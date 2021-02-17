@@ -1,0 +1,26 @@
+spring:
+  application:
+    # 应用名称
+    name: system-server
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos-ip@
+        enabled: true
+      config:
+        server-addr: @nacos-ip@
+        file-extension: ${NACOS_FILE_EXTENSION:yaml}
+        enabled: false
+
+server:
+  port: 8081
+  tomcat:
+    accesslog:
+      enabled: false
+      directory: logs
+      pattern: common
+      prefix: access_log
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+    min-response-size: 102400

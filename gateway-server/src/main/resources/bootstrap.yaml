@@ -1,0 +1,31 @@
+server:
+  port: 80
+spring:
+  application:
+    # 应用名称
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: @nacos-ip@
+        enabled: true
+      config:
+        server-addr: @nacos-ip@
+        file-extension: ${NACOS_FILE_EXTENSION:yaml}
+        enabled: false
+    gateway:
+      discovery:
+        locator:
+          # 将微服务的service id 自动处理为小写。对自动把service id转为大写的eureka很有用
+          lower-case-service-id: true
+          # 是否和服务注册与发现组件结合，设置为 true 后可以直接使用应用名称调用服务
+          enabled: true
+#      routes:
+#        - id: requestratelimiter_route
+#          uri: http://example.org
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter.replenishRate: 10
+#                redis-rate-limiter.burstCapacity: 20
+#                key-resolver: "#{@userKeyResolver}"
