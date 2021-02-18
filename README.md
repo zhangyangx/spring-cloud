@@ -1,2 +1,2 @@
 # spring-cloud
-spring-cloud-parent
+spring cloud + spring security auth2 + xxl-job + redis
